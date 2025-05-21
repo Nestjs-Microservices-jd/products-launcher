@@ -1,3 +1,9 @@
+## DEV
+
+1. Clonar repositorio
+2. Crear un .env basado en .env.template
+3. Ejecutar el comando `docker compose up --build`
+
 ### Pasos para crear los Git Submodules
 
 1. Crear un nuevo repositorio en GitHub
