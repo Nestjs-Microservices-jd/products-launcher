@@ -56,6 +56,7 @@ services:
       POSTGRES_PASSWORD: orderspassword
       POSTGRES_DB: ordersdb
 
+
   payments-ms:
     build: ./payments-ms
     volumes:
@@ -70,3 +71,15 @@ services:
       - STRIPE_SUCCESS_URL=${STRIPE_SUCCESS_URL}
       - STRIPE_CANCEL_URL=${STRIPE_CANCEL_URL}
       - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
+  
+  
+  auth-ms:
+    build: ./auth-ms
+    volumes:
+      - ./auth-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3004
+      - JWT_SECRET=${JWT_SECRET}
+      - NATS_SERVERS=nats://nats-server:4222
+      - DATABASE_URL=${AUTH_DATABASE_URL}
