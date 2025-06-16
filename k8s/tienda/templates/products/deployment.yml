@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: products
+  name: products
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: products
+    spec:
+      containers:
+      - image: us-west1-docker.pkg.dev/metal-ranger-462014-t1/image-registry/products-ms
+        name: products
+        env:
+        - name: PORT
+          value: "3001"
+        - name: NATS_SERVERS
+          value: "nats://nats"
+        - name: DATABASE_URL
+          value: "file:./dev.db"
+        resources: {}
+status: {}

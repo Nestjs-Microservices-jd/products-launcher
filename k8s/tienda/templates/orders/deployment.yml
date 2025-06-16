@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: orders
+  name: orders
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: orders
+    spec:
+      containers:
+      - image: us-west1-docker.pkg.dev/metal-ranger-462014-t1/image-registry/orders-ms
+        name: orders
+        env:
+          - name: PORT
+            value: "3002"
+          - name: NATS_SERVERS
+            value: "nats://nats"
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: orders-secrets
+                key: database_url
+        resources: {}
+status: {}
