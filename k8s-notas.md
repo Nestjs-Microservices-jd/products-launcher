@@ -37,3 +37,18 @@ Nota: Si no funciona y tira 401, probar esta alternativa
 - ``` gcloud auth print-access-token ```
 
 kubectl create secret docker-registry gcr-json-key --docker-server=us-west-example.pkg.dev --docker-username=oauth2accesstoken --docker-password="token" --docker-email=example@example.com
+
+## contexts
+
+Ver los cluster disponibles
+``` kubectl config get-contexts ```
+
+Cambiar el context actual
+``` kubectl config use-context context-name-example ```
+## Kubernets engine
+
+- Crear por defecto
+- Usar el cluster en local ```gcloud container clusters get-credentials kubernet-name --region us-example --project-example```
+
+k8s/tienda
+helm create tienda
